@@ -46,5 +46,5 @@ variable "acm_cert_domain" {
 
 variable "min_capacity" {
   description = "Mininum number of nodes"
-  mdefault    = 180
+  default    = 180
 }
