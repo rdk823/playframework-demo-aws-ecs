@@ -13,7 +13,7 @@ jobs:
     - name: Terraform deploy
       timeout-minutes: 20
       if: startsWith(github.event.head_commit.message, 'DEPLOY')
-      run: ./terraform.sh deploy
+      run: ./scripts/terraform.sh deploy
   terraform-destroy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -25,4 +25,4 @@ jobs:
     - name: Terraform destroy
       timeout-minutes: 20
       if: startsWith(github.event.head_commit.message, 'DESTROY')
-      run: ./terraform.sh destroy
+      run: ./scripts/terraform.sh destroy
