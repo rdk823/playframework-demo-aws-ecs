@@ -4,7 +4,7 @@
 set -e
 
 # Print the commands as it is executed. Useful for debugging
-# set -x
+set -x
 
 # Check dependencies
 aws --version
