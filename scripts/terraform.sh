@@ -11,5 +11,5 @@ aws --version
 terraform --version
 
 terraform init -reconfigure -input=false
-terraform plan -input=false -var-file=terraform.tfvars
-terraform apply -auto-approve -input=false -var-file=terraform.tfvars
+terraform plan -input=false
+terraform apply -auto-approve -input=false
