@@ -46,5 +46,20 @@ variable "acm_cert_domain" {
 
 variable "min_capacity" {
   description = "Mininum number of nodes"
-  default    = 180
+  default    = "2"
+}
+
+variable "max_capacity" {
+  description = "Maximum number of nodes"
+  default          = "3"
+}
+
+variable "image_tag" {
+  description = "The docker image tag to be deployed in ecs"
+  default     = "latest"
+}
+
+variable "log_retention_in_days" {
+  description = "No of days to retain logs"
+  default     = 180
 }
