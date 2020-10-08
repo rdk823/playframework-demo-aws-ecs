@@ -5,6 +5,9 @@ jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AwsAccessKeyId }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AwsSecretAccessKey }}
     steps:
     - uses: actions/checkout@v1
     - name: Terraform deploy
@@ -14,6 +17,9 @@ jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AwsAccessKeyId }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AwsSecretAccessKey }}
     steps:
     - uses: actions/checkout@v1
     - name: Terraform destroy
