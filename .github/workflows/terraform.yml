@@ -1,0 +1,22 @@
+name: AWS ECS Deployment
+on: [push]
+
+jobs:
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v1
+    - name: Terraform deploy
+      timeout-minutes: 20
+      if: startsWith(github.event.head_commit.message, 'DEPLOY')
+      run: ./terraform.sh deploy
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v1
+    - name: Terraform destroy
+      timeout-minutes: 20
+      if: startsWith(github.event.head_commit.message, 'DESTROY')
+      run: ./terraform.sh destroy
