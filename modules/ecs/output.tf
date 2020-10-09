@@ -15,7 +15,7 @@ output "service_name" {
 }
 
 output "alb_dns_name" {
-  value = aws_alb.app.dns_name
+  value = aws_route53_record.www.fqdn
 }
 
 output "alb_zone_id" {
