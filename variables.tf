@@ -1,5 +1,5 @@
 variable "action" {
-  default     = "deploy"
+  default  = "deploy"
 }
 
 variable "region" {
