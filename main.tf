@@ -1,6 +1,3 @@
-# data "aws_iam_role" "ebs_iam_service_role" {
-#   name = "AWSServiceRoleForElasticBeanstalk"
-# }
 
 module "vpc" {
   source               = "./modules/vpc"
@@ -8,17 +5,6 @@ module "vpc" {
   vpc_cidr             = var.vpc_cidr_block
   vpc_subnet_cidr      = var.vpc_subnet_block
 }
-
-# module "postgres-rds" {
-#   source            = "./modules/postgres-rds"
-#   project       = var.project
-#   allocated_storage = "5"
-#   database_name     = var.database_name
-#   subnet_ids        = module.vpc.private_subnets_ids
-#   vpc_id            = module.vpc.vpc_id
-#   instance_class    = "db.t2.micro"
-#   multi_az          = var.database_multi_az
-# }
 
 module "ecs" {
   source              = "./modules/ecs"
