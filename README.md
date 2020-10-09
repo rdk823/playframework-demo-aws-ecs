@@ -1,3 +1,3 @@
 # Playframework Webservice AWS ECS
 
-**(Documention coming soon)**
+**(Documentation coming soon)**
