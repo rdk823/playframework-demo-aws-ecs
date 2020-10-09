@@ -67,6 +67,8 @@ resource "aws_alb_target_group" "app_alb_target_group" {
     protocol            = "HTTP"
     matcher             = "200-299"  
   }
+
+  depends_on = [ aws_alb.app ]
 }
 
 /* security group for ALB */
