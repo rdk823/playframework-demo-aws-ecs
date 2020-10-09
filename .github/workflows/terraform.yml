@@ -13,7 +13,11 @@ jobs:
     - name: Terraform deploy
       timeout-minutes: 20
       if: startsWith(github.event.head_commit.message, 'DEPLOY')
-      run: ./scripts/terraform.sh deploy
+      run: |
+        ./scripts/terraform_backend.sh > backend.hcl
+        terraform init -backend-config=backend.hcl -input=false
+        terraform plan -input=false
+        terraform apply -auto-approve -input=false
   terraform-destroy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -25,4 +29,8 @@ jobs:
     - name: Terraform destroy
       timeout-minutes: 20
       if: startsWith(github.event.head_commit.message, 'DESTROY')
-      run: ./scripts/terraform.sh destroy
+      run: |
+        ./scripts/terraform_backend.sh > backend.hcl
+        terraform init -backend-config=backend.hcl -input=false
+        terraform plan -input=false
+        terraform destroy -auto-approve -input=false
