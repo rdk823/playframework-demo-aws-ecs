@@ -1,5 +1,5 @@
 variable "action" {
-  default     = "destroy"
+  default     = "deploy"
 }
 
 variable "region" {
