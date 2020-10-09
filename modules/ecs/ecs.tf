@@ -3,7 +3,7 @@
 * Cloudwatch Log Group
 *---------------------------------*/
 resource "aws_cloudwatch_log_group" "app" {
-  name = "${var.application_name}-${var.project}"
+  name = "${var.project}_${var.application_name}"
   retention_in_days = var.log_retention_in_days
   tags = {
     project = var.project
@@ -26,25 +26,25 @@ data "aws_iam_policy_document" "ecs_service_role" {
 }
 
 resource "aws_iam_role" "app_ecs_role" {
-  name               = "${var.application_name}_${var.project}_ecs_role"
+  name               = "${var.project}_${var.application_name}_ecs_role"
   assume_role_policy = data.aws_iam_policy_document.ecs_service_role.json
 }
 
 /* ecs service scheduler role */
 resource "aws_iam_role_policy" "app_ecs_service_role_policy" {
-  name   = "${var.application_name}_${var.project}_ecs_service_role_policy"
+  name   = "${var.project}_${var.application_name}_ecs_service_role_policy"
   policy = file("${path.module}/policies/ecs-service-role.json")
   role   = aws_iam_role.app_ecs_role.id
 }
 
 /* role that the Amazon ECS container agent and the Docker daemon can assume */
 resource "aws_iam_role" "app_ecs_execution_role" {
-  name               = "${var.application_name}_${var.project}_ecs_task_execution_role"
+  name               = "${var.project}_${var.application_name}_ecs_task_execution_role"
   assume_role_policy = file("${path.module}/policies/ecs-task-execution-role.json")
 }
 
 resource "aws_iam_role_policy" "app_ecs_execution_role_policy" {
-  name   = "${var.application_name}_${var.project}_ecs_execution_role_policy"
+  name   = "${var.project}_${var.application_name}_ecs_execution_role_policy"
   policy = file("${path.module}/policies/ecs-execution-role-policy.json")
   role   = aws_iam_role.app_ecs_execution_role.id
 }
@@ -68,7 +68,7 @@ data "template_file" "app_task" {
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "${var.application_name}_${var.project}"
+  family                   = "${var.project}_${var.application_name}"
   container_definitions    = data.template_file.app_task.rendered
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -110,7 +110,7 @@ resource "aws_security_group" "app_ecs_service" {
 }
 
 resource "aws_ecs_service" "app" {
-  name            = "${var.application_name}-${var.project}"
+  name            = "${var.project}-${var.application_name}"
   task_definition = aws_ecs_task_definition.app.family
   desired_count   = var.min_capacity
   deployment_maximum_percent = "200"

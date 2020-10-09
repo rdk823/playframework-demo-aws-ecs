@@ -16,6 +16,6 @@ resource "aws_ecr_lifecycle_policy" "app_policy" {
 * ECS cluster
 *---------------------------------*/
 resource "aws_ecs_cluster" "app_cluster" {
-  name = "${var.application_name}-${var.project}-ecs-cluster"
+  name = "${var.project}-${var.application_name}-ecs-cluster"
 }
 
