@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Init variables
-AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
 BUCKET_NAME=terraform-playframework-demo
 KMS_KEY_ALIAS=alias/playframework-demo-key
 DB_TABLE=terraform-playframework-demo
