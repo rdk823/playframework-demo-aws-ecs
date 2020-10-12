@@ -41,7 +41,7 @@ fi
 
 
 cat <<BACKEND
-region         = "${AWS_REGION}"
+region         = "${AWS_DEFAULT_REGION}"
 encrypt        = true
 bucket         = "${BUCKET_NAME}"
 key            = "terraform.tfstate"
