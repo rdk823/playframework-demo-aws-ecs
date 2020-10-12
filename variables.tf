@@ -58,6 +58,7 @@ variable "max_capacity" {
   default          = "3"
 }
 
+
 variable "image_tag" {
   description = "The docker image tag to be deployed in ecs"
   default     = "latest"
